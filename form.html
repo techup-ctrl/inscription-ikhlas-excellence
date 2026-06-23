@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>أكاديمية الإخلاص للتميز – تسجيل 2026/2027</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --purple:      #6B21A8;
+    --purple-mid:  #7C3AED;
+    --purple-light:#EDE9FE;
+    --gold:        #C8952A;
+    --gold-light:  #F5D98A;
+    --navy:        #1E2A6E;
+    --white:       #FFFFFF;
+    --off-white:   #F8F7FF;
+    --text:        #1A1A2E;
+    --muted:       #64748B;
+    --border:      #DDD6FE;
+  }
+  body { font-family:'Cairo',sans-serif; background:var(--off-white); color:var(--text); min-height:100vh; }
+
+  /* HEADER */
+  header {
+    background:linear-gradient(135deg,var(--navy) 0%,var(--purple) 60%,#9333EA 100%);
+    padding:40px 20px 60px; text-align:center; position:relative; overflow:hidden;
+  }
+  header::before {
+    content:''; position:absolute; inset:0;
+    background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  .logo-row { display:flex; align-items:center; justify-content:center; gap:14px; margin-bottom:18px; position:relative; }
+  .logo-circle { width:56px;height:56px;background:var(--white);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;box-shadow:0 4px 16px rgba(0,0,0,.3); }
+  .academy-name { color:var(--white);font-size:22px;font-weight:900;text-shadow:0 2px 8px rgba(0,0,0,.3); }
+  .header-badge { display:inline-block;background:linear-gradient(90deg,var(--gold),var(--gold-light),var(--gold));color:var(--navy);font-size:13px;font-weight:700;padding:4px 18px;border-radius:20px;margin-bottom:14px;letter-spacing:1px; }
+  header h1 { color:var(--white);font-size:clamp(26px,6vw,42px);font-weight:900;line-height:1.2;margin-bottom:8px;position:relative; }
+  header h1 span { color:var(--gold-light); }
+  header p.sub { color:rgba(255,255,255,.75);font-size:15px; }
+  .year-chip { display:inline-block;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.3);color:var(--white);font-weight:700;font-size:16px;padding:6px 22px;border-radius:30px;margin-top:14px;backdrop-filter:blur(4px); }
+
+  .wave { display:block; margin-top:-2px; }
+
+  /* MAIN */
+  main { max-width:680px;margin:-30px auto 60px;padding:0 16px;position:relative;z-index:2; }
+  .card { background:var(--white);border-radius:20px;padding:36px 32px;box-shadow:0 8px 40px rgba(107,33,168,.12);border-top:4px solid var(--gold); }
+  .card-title { font-size:18px;font-weight:700;color:var(--purple);margin-bottom:28px;display:flex;align-items:center;gap:10px; }
+  .card-title::after { content:'';flex:1;height:2px;background:linear-gradient(90deg,var(--border),transparent); }
+
+  /* FIELDS */
+  .form-group { margin-bottom:22px; }
+  label { display:block;font-size:14px;font-weight:700;color:var(--navy);margin-bottom:7px; }
+  label .req { color:#DC2626;margin-right:2px; }
+  input[type="text"], input[type="tel"], select {
+    width:100%;padding:13px 16px;border:2px solid var(--border);border-radius:12px;
+    font-family:'Cairo',sans-serif;font-size:15px;color:var(--text);background:var(--off-white);
+    transition:border-color .2s,box-shadow .2s;outline:none;direction:rtl;
+  }
+  input[type="text"]:focus, input[type="tel"]:focus, select:focus {
+    border-color:var(--purple-mid);box-shadow:0 0 0 4px rgba(124,58,237,.12);background:var(--white);
+  }
+  input::placeholder { color:#A0AEC0; }
+
+  /* شعبة - animated reveal */
+  .branch-group {
+    overflow:hidden;max-height:0;opacity:0;
+    transition:max-height .4s ease, opacity .3s ease, margin .3s ease;
+    margin-bottom:0;
+  }
+  .branch-group.visible { max-height:120px;opacity:1;margin-bottom:22px; }
+
+  /* SUBJECTS */
+  .subjects-label { font-size:14px;font-weight:700;color:var(--navy);margin-bottom:12px;display:block; }
+  .subjects-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(165px,1fr));gap:10px; }
+  .subject-item { position:relative; }
+  .subject-item input[type="checkbox"] { position:absolute;opacity:0;width:0;height:0; }
+  .subject-item label {
+    display:flex;align-items:center;gap:9px;padding:11px 14px;
+    border:2px solid var(--border);border-radius:12px;cursor:pointer;
+    font-size:14px;font-weight:600;color:var(--text);background:var(--off-white);
+    transition:all .18s;user-select:none;margin-bottom:0;
+  }
+  .subject-item label .check-icon {
+    width:20px;height:20px;border:2px solid var(--border);border-radius:6px;
+    background:var(--white);flex-shrink:0;display:flex;align-items:center;justify-content:center;
+    transition:all .18s;font-size:11px;color:transparent;
+  }
+  .subject-item input:checked + label { border-color:var(--purple-mid);background:var(--purple-light);color:var(--purple); }
+  .subject-item input:checked + label .check-icon { background:var(--purple-mid);border-color:var(--purple-mid);color:var(--white); }
+  .subject-item label:hover { border-color:var(--purple-mid);background:var(--purple-light); }
+
+  select {
+    appearance:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236B21A8' stroke-width='2'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;background-position:left 14px center;padding-left:42px;
+  }
+
+  /* SUBMIT */
+  .submit-btn {
+    width:100%;padding:16px;background:linear-gradient(135deg,var(--purple),var(--purple-mid));
+    color:var(--white);font-family:'Cairo',sans-serif;font-size:17px;font-weight:900;
+    border:none;border-radius:14px;cursor:pointer;margin-top:10px;
+    transition:transform .15s,box-shadow .15s;box-shadow:0 6px 20px rgba(107,33,168,.35);
+    display:flex;align-items:center;justify-content:center;gap:10px;
+  }
+  .submit-btn:hover { transform:translateY(-2px);box-shadow:0 10px 28px rgba(107,33,168,.45); }
+  .submit-btn:active { transform:translateY(0); }
+  .submit-btn:disabled { opacity:.6;cursor:not-allowed;transform:none; }
+
+  /* SPINNER */
+  .spinner { width:18px;height:18px;border:2px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;display:none; }
+  @keyframes spin { to { transform:rotate(360deg); } }
+
+  /* SUCCESS */
+  .success-screen { display:none;text-align:center;padding:20px 0; }
+  .success-icon { width:80px;height:80px;background:linear-gradient(135deg,#059669,#10B981);border-radius:50%;margin:0 auto 20px;display:flex;align-items:center;justify-content:center;font-size:36px;box-shadow:0 8px 24px rgba(5,150,105,.3); }
+  .success-screen h2 { font-size:22px;font-weight:900;color:var(--navy);margin-bottom:8px; }
+  .success-screen p { color:var(--muted);font-size:15px;line-height:1.7; }
+  .reset-btn { margin-top:24px;padding:12px 32px;background:transparent;border:2px solid var(--purple-mid);color:var(--purple);font-family:'Cairo',sans-serif;font-size:15px;font-weight:700;border-radius:12px;cursor:pointer;transition:all .2s; }
+  .reset-btn:hover { background:var(--purple-light); }
+
+  /* ERROR */
+  .error-msg { color:#DC2626;font-size:12px;font-weight:600;margin-top:5px;display:none; }
+  .field-error input, .field-error select { border-color:#DC2626; }
+  .field-error .error-msg { display:block; }
+
+  /* API INFO BOX */
+  .api-info {
+    background:linear-gradient(135deg,#F0FDF4,#DCFCE7);
+    border:2px solid #86EFAC;border-radius:16px;padding:20px 22px;margin-top:20px;
+  }
+  .api-info h3 { font-size:15px;font-weight:900;color:#166534;margin-bottom:10px;display:flex;align-items:center;gap:8px; }
+  .api-info p { font-size:13px;color:#15803D;line-height:1.8; }
+  .api-info code { background:rgba(0,0,0,.08);padding:1px 6px;border-radius:4px;font-family:monospace;font-size:12px; }
+
+  /* INFO STRIP */
+  .info-strip { background:linear-gradient(135deg,var(--navy),var(--purple));border-radius:16px;padding:20px 24px;margin-top:20px;display:flex;flex-wrap:wrap;gap:16px;justify-content:center; }
+  .info-item { display:flex;align-items:center;gap:8px;color:var(--white);font-size:13px;font-weight:600; }
+  .info-item .icon { font-size:18px;opacity:.9; }
+
+  @media (max-width:500px) {
+    .card { padding:24px 18px; }
+    .subjects-grid { grid-template-columns:1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo-row">
+    <div class="logo-circle">
+        <img src="Untitled design.png " alt="logo" style="width:80px;height:80px;object-fit:contain;border-radius:50%;">
+    </div>
+    <div class="academy-name">أكاديمية الإخلاص للتميز</div>
+  </div>
+  <div class="header-badge">IKHLAS ACADEMIC EXCELLENCE</div>
+  <h1>بداية <span>التسجيلات</span><br>للسنة الجديدة</h1>
+  <p class="sub">بيئة تعليمية متكاملة لتميز أبنائنا في جميع المواد</p>
+  <div class="year-chip">2026 | 2027</div>
+</header>
+
+<svg class="wave" viewBox="0 0 1440 50" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M0,30 C360,60 1080,0 1440,30 L1440,50 L0,50 Z" fill="#F8F7FF"/>
+</svg>
+
+<main>
+  <div class="card">
+    <div id="form-section">
+      <div class="card-title">📋 استمارة التسجيل</div>
+
+      <div class="form-group" id="fg-prenom">
+        <label for="prenom"><span class="req">*</span> الإسم</label>
+        <input type="text" id="prenom" placeholder="أدخل إسمك ">
+        <div class="error-msg">هذا الحقل إجباري</div>
+      </div>
+
+      <div class="form-group" id="fg-nom">
+        <label for="nom"><span class="req">*</span> اللقب</label>
+        <input type="text" id="nom" placeholder="أدخل لقبك ">
+        <div class="error-msg">هذا الحقل إجباري</div>
+      </div>
+
+      <div class="form-group" id="fg-tel">
+        <label for="tel"><span class="req">*</span> رقم الهاتف</label>
+        <input type="tel" id="tel" placeholder="أدخل رقم هاتف صحيح" dir="ltr" style="text-align:right">
+        <div class="error-msg">أدخل رقم هاتف صحيح</div>
+      </div>
+
+      <div class="form-group" id="fg-level">
+        <label for="level"><span class="req">*</span> المستوى الدراسي</label>
+        <select id="level" onchange="onLevelChange()">
+          <option value="">-- اختر مستواك الدراسي --</option>
+          <optgroup label="الابتدائي">
+            <option value="1ap">السنة الأولى ابتدائي</option>
+            <option value="2ap">السنة الثانية ابتدائي</option>
+            <option value="3ap">السنة الثالثة ابتدائي</option>
+            <option value="4ap">السنة الرابعة ابتدائي</option>
+            <option value="5ap">السنة الخامسة ابتدائي</option>
+          </optgroup>
+          <optgroup label="المتوسط">
+            <option value="1am">السنة الأولى متوسط</option>
+            <option value="2am">السنة الثانية متوسط</option>
+            <option value="3am">السنة الثالثة متوسط</option>
+            <option value="4am">السنة الرابعة متوسط (BEM)</option>
+          </optgroup>
+          <optgroup label="الثانوي">
+            <option value="1as">السنة الأولى ثانوي</option>
+            <option value="2as">السنة الثانية ثانوي</option>
+            <option value="3as">السنة الثالثة ثانوي (BAC)</option>
+          </optgroup>
+        </select>
+        <div class="error-msg">اختر مستواك الدراسي</div>
+      </div>
+
+      <!-- حقل الشعبة — يظهر فقط للثانوي -->
+      <div class="branch-group form-group" id="fg-branch">
+        <label for="branch"><span class="req">*</span> الشعبة</label>
+        <select id="branch">
+          <option value="">-- اختر الشعبة --</option>
+          <option value="علوم تجريبية">علوم تجريبية</option>
+          <option value="رياضيات">رياضيات</option>
+          <option value="تقني رياضي">تقني رياضي</option>
+          <option value="آداب وفلسفة">آداب وفلسفة</option>
+          <option value="لغات أجنبية">لغات أجنبية</option>
+          <option value="تسيير واقتصاد">تسيير واقتصاد</option>
+        </select>
+        <div class="error-msg">اختر الشعبة</div>
+      </div>
+
+      <div class="form-group" id="fg-subjects">
+        <span class="subjects-label"><span class="req">*</span> المواد المطلوبة <small style="font-weight:400;color:var(--muted)">(اختر واحدة أو أكثر)</small></span>
+        <div class="subjects-grid">
+          <div class="subject-item"><input type="checkbox" id="s1" value="رياضيات"><label for="s1"><span class="check-icon">✓</span> رياضيات</label></div>
+          <div class="subject-item"><input type="checkbox" id="s2" value="علوم فيزيائية"><label for="s2"><span class="check-icon">✓</span> العلوم الفيزيائية</label></div>
+          <div class="subject-item"><input type="checkbox" id="s3" value="علوم طبيعية"><label for="s3"><span class="check-icon">✓</span> العلوم الطبيعية</label></div>
+          <div class="subject-item"><input type="checkbox" id="s4" value="لغة عربية"><label for="s4"><span class="check-icon">✓</span> اللغة العربية</label></div>
+          <div class="subject-item"><input type="checkbox" id="s5" value="لغة إنجليزية"><label for="s5"><span class="check-icon">✓</span> اللغة الإنجليزية</label></div>
+          <div class="subject-item"><input type="checkbox" id="s6" value="لغة فرنسية"><label for="s6"><span class="check-icon">✓</span> اللغة الفرنسية</label></div>
+          <div class="subject-item"><input type="checkbox" id="s7" value="فلسفة"><label for="s7"><span class="check-icon">✓</span> الفلسفة</label></div>
+          <div class="subject-item"><input type="checkbox" id="s8" value="تاريخ وجغرافيا"><label for="s8"><span class="check-icon">✓</span> التاريخ والجغرافيا</label></div>
+          <div class="subject-item"><input type="checkbox" id="s8" value="محاسبة"><label for="s8"><span class="check-icon">✓</span> المحاسبة</label></div>
+          <div class="subject-item"><input type="checkbox" id="s8" value=" اقتصاد "><label for="s8"><span class="check-icon">✓</span> الإقتصاد</label></div>
+          <div class="subject-item"><input type="checkbox" id="s8" value="هندسة ميكانيكية"><label for="s8"><span class="check-icon">✓</span>  الهندسة الميكانيكية</label></div>
+          <div class="subject-item"><input type="checkbox" id="s8" value="هندسة كهربائية"><label for="s8"><span class="check-icon">✓</span>  الهندسة الكهربائية</label></div>
+          <div class="subject-item"><input type="checkbox" id="s8" value="هندسة مدنية"><label for="s8"><span class="check-icon">✓</span>  الهندسة المدنية</label></div>
+          <div class="error-msg" id="subjects-error">اختر مادة واحدة على الأقل</div>
+        </div>
+
+      <button class="submit-btn" id="submit-btn" onclick="handleSubmit()">
+        <div class="spinner" id="spinner"></div>
+        <span id="btn-text">🚀 إرسال طلب التسجيل</span>
+      </button>
+    </div>
+
+    <div class="success-screen" id="success-screen">
+      <div class="success-icon">✓</div>
+      <h2>تم إرسال طلبك بنجاح!</h2>
+      <p>شكرًا <strong id="success-name"></strong>، سيتواصل معك فريق الأكاديمية قريبًا على رقم هاتفك لتأكيد التسجيل.<br><br>الأماكن محدودة – سارع بالتأكيد!</p>
+      <button class="reset-btn" onclick="resetForm()">تسجيل طالب آخر</button>
+    </div>
+  </div>
+
+
+
+  <div class="info-strip">
+    <div class="info-item"><span class="icon">📧</span> ikhlasacademicexcellence@gmail.com</div>
+    <div class="info-item"><span class="icon">📞</span> 39 16 22 91 07</div>
+    <div class="info-item"><span class="icon">📍</span> GDYEL (مقر الكشافة) – ORAN</div>
+  </div>
+</main>
+
+<script>
+  // ══════════════════════════════════════════════════
+  //  ضع هنا رابط Google Apps Script Web App بعد إنشائه
+  //  مثال: https://script.google.com/macros/s/ABC123.../exec
+  // ══════════════════════════════════════════════════
+  const SHEET_URL = "https://script.google.com/macros/s/AKfycby5rcIsTSzEKUTTIckBMfXNj9cJt7uy3Y13RKriPBfTEjmHIcSW44NOo5pjz9LTc54J_Q/exec";
+
+  // المستويات التي تستوجب اختيار الشعبة
+  const BRANCH_LEVELS = ['1as','2as','3as'];
+
+  function onLevelChange() {
+    const val = document.getElementById('level').value;
+    const bg = document.getElementById('fg-branch');
+    if (BRANCH_LEVELS.includes(val)) {
+      bg.classList.add('visible');
+    } else {
+      bg.classList.remove('visible');
+      document.getElementById('branch').value = '';
+      bg.classList.remove('field-error');
+    }
+  }
+
+  function validate() {
+    let valid = true;
+
+    const fields = [
+      { id:'fg-prenom', input:document.getElementById('prenom'), check:v => v.trim().length > 1 },
+      { id:'fg-nom',    input:document.getElementById('nom'),    check:v => v.trim().length > 1 },
+      { id:'fg-tel',    input:document.getElementById('tel'),    check:v => /^[\d\s+]{9,15}$/.test(v.trim()) },
+      { id:'fg-level',  input:document.getElementById('level'),  check:v => v !== '' },
+    ];
+
+    fields.forEach(f => {
+      const fg = document.getElementById(f.id);
+      if (!f.check(f.input.value)) { fg.classList.add('field-error'); valid = false; }
+      else fg.classList.remove('field-error');
+    });
+
+    // شعبة — فقط إذا كان ثانوي
+    const level = document.getElementById('level').value;
+    const branch = document.getElementById('branch').value;
+    const fgB = document.getElementById('fg-branch');
+    if (BRANCH_LEVELS.includes(level) && branch === '') {
+      fgB.classList.add('field-error'); valid = false;
+    } else {
+      fgB.classList.remove('field-error');
+    }
+
+    // مواد
+    const checked = document.querySelectorAll('.subjects-grid input:checked');
+    const fgSub = document.getElementById('fg-subjects');
+    const subErr = document.getElementById('subjects-error');
+    if (checked.length === 0) {
+      fgSub.classList.add('field-error'); subErr.style.display='block'; valid = false;
+    } else {
+      fgSub.classList.remove('field-error'); subErr.style.display='none';
+    }
+
+    return valid;
+  }
+
+  async function handleSubmit() {
+    if (!validate()) return;
+
+    const btn = document.getElementById('submit-btn');
+    const spinner = document.getElementById('spinner');
+    const btnText = document.getElementById('btn-text');
+    btn.disabled = true;
+    spinner.style.display = 'block';
+    btnText.textContent = 'جاري الإرسال...';
+
+    const subjects = [...document.querySelectorAll('.subjects-grid input:checked')]
+                      .map(i => i.value).join('، ');
+    const level = document.getElementById('level').value;
+    const branch = BRANCH_LEVELS.includes(level)
+                   ? document.getElementById('branch').value : '—';
+
+    const payload = {
+      prenom:   document.getElementById('prenom').value.trim(),
+      nom:      document.getElementById('nom').value.trim(),
+      tel:      document.getElementById('tel').value.trim(),
+      level:    document.getElementById('level').options[document.getElementById('level').selectedIndex].text,
+      branch:   branch,
+      subjects: subjects,
+      date:     new Date().toLocaleString('ar-DZ')
+    };
+
+    try {
+      // إرسال البيانات إلى Google Sheets عبر Apps Script
+      if (SHEET_URL !== "YOUR_GOOGLE_APPS_SCRIPT_URL_HERE") {
+        await fetch(SHEET_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+      }
+      // عرض شاشة النجاح
+      document.getElementById('success-name').textContent = payload.prenom + ' ' + payload.nom;
+      document.getElementById('form-section').style.display = 'none';
+      document.getElementById('success-screen').style.display = 'block';
+    } catch(e) {
+      alert('حدث خطأ في الإرسال، حاول مرة أخرى.');
+    } finally {
+      btn.disabled = false;
+      spinner.style.display = 'none';
+      btnText.textContent = '🚀 إرسال طلب التسجيل';
+    }
+  }
+
+  function resetForm() {
+    ['prenom','nom','tel'].forEach(id => document.getElementById(id).value='');
+    document.getElementById('level').value='';
+    document.getElementById('branch').value='';
+    document.getElementById('fg-branch').classList.remove('visible');
+    document.querySelectorAll('.subjects-grid input').forEach(i => i.checked=false);
+    document.querySelectorAll('.field-error').forEach(el => el.classList.remove('field-error'));
+    document.getElementById('form-section').style.display='block';
+    document.getElementById('success-screen').style.display='none';
+  }
+</script>
+</body>
+</html>
